@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;
+			  padding: 0;
+			}
+			#small{width: 200px;
+			      height:200px;
+			      background: url(img/hu.jpg);
+				  float: left;
+				  background-size:cover ;
+				  position: relative;
+				  cursor:move;
+				
+			}
+			#big{width: 200px;
+			      height:200px;
+			      background: url(img/hu.jpg) no-repeat;
+				  float: left;
+				  display: none;
+				  
+			}
+			#mask{
+				  display: none;
+				position: absolute;
+				
+				left: 0;
+				top: 0;
+				background: rgba(255,255,0,0.5);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="small">
+			<div id="mask">
+				
+			</div>
+		</div>
+		<div id="big">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var small=document.getElementById("small");
+		var big=document.getElementById("big");
+		var mask=document.getElementById("mask");
+		var scale=640/200;
+		mask.style.width=200/scale+"px";
+		mask.style.height=200/scale+"px";
+		small.onmouseover=function(){
+			mask.style.display="block";
+			big.style.display="block";
+		}
+		small.onmouseout=function(){
+			mask.style.display="none";
+			big.style.display="none";
+		}
+		document.onmousemove=function(evt){
+			evt=evt||window.event;
+			var left=evt.clientX-mask.offsetWidth/2;
+			var top=evt.clientY-mask.offsetHeight/2;
+			var maxleft=small.offsetWidth-mask.offsetWidth;
+			var maxtop=small.clientHeight-mask.offsetHeight;
+			
+			if(left<=0){
+				left=0;
+			}
+			if(top<=0){
+				top=0;
+			}
+			if(left>=maxleft){
+				left=maxleft;
+			}
+			if(top>=maxtop){
+				top=maxtop;
+			}
+			/*mask.style.left=evt.clientX-mask.offsetWidth/2+"px";
+			mask.style.top=evt.clientY-mask.offsetHeight/2+"px";
+			big.style.backgroundPositionX=-(evt.clientX-mask.offsetWidth/2)*scale+"px";
+			big.style.backgroundPositionY=-(evt.clientY-mask.offsetHeight/2)*scale+"px";*/
+			mask.style.left=left+"px";
+			mask.style.top=top+"px";
+			big.style.backgroundPositionX=-left*scale+"px";
+			big.style.backgroundPositionY=-top*scale+"px";
+		}
+		
+	</script>
+</html>

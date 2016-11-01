@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//document.cookie="id=710908";
+		for(var i=0;i<160;i++){
+			document.cookie="id"+i+"=1001"+i;
+		}
+		//alert(document.cookie)
+		var str=document.cookie;
+		var arr=str.split("; ");
+		//通过下标查找
+		document.write(arr[72])
+		var str72=arr[62];
+		//方法1
+		var n=str72.indexOf('=');
+		alert(str72.substring(n+1));
+		//方法二
+		alert(str72.split("=")[1]);
+		//通过查找查找关键字
+		for(var i=0;i<arr.length;i++){
+			if(arr[i].indexOf("id72")!=-1){
+				alert(i);
+			}
+		}
+	</script>
+</html>
